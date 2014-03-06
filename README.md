@@ -1,6 +1,6 @@
-# **Who's Yo Daddy?** 
+# **Chooser** 
 
-This app allows user to randomly select an item from a list and declares it to be "Chosen!".  My first attempt at implementing Angular in a toy app.
+This app allows user to randomly select an item from a list and declare its chosen status on the view.  My first attempt at implementing Angular in a toy app.
 
 Notes to self:
 
