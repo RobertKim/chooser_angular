@@ -1,16 +1,19 @@
 <h1>Chooser</h1>
-<h3>Who's Yo Daddy?</h3>
 
 <div ng-controller='ChoiceCtrl'>
 	<form ng-submit='addEntry()'>
 		<input type='text' ng-model='newEntry.name'>
-		<input type='submit' value='Add'>
+		<input class='submit' type='submit' value='Add'>
 	</form>
 
 	<ul>
 		<li ng-repeat='entry in entries'>
 			{{entry.name}}
+			<button ng-click='remove(entry)' class='delete'>Delete</button>
+			<span ng-show='entry.chosen' ng-class='{highlight: entry == lastChosen}' class='chosen'>I'm yo Daddy!</span>
 		</li>
 	</ul>
+
+	<button ng-click='pickChosen()'>Who's Yo Daddy?</button>
 
 </div>

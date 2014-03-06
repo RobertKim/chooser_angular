@@ -30,21 +30,23 @@ Notes to self:
 
 12. 'angular.forEach $scope.entries, (entry)' is Angular's own method for iterating through the array.
 
-**Server-side** 
+**Server-side** (making the data **_persist_**)
 
 1.  Generate rails resource `entries` with RESTful routes in controller.
 
 2.  `require angular-resource` in `application.js`, provided in the gem.
 
-3.  Define Angular as a dependency by creating a module.  In the `js.coffee` file, `app = angular.module("Choosy", ['ngResource'])` is the first step to setting up the angular resource dependency.
+3.  Define Angular as a dependency by creating a module.  In the `js.coffee` file, `app = angular.module("Chooser", ['ngResource'])` is the first step to setting up the angular resource dependency.
 
-4.  Modify the `ng-app` to `ng-app='Choosy'` to have the module used in this application.
+4.  Modify the `ng-app` to `ng-app='Chooser'` to have the module used in this application.
 
-5.  Add the `$resource` service as argument to the `@ChoiceCtrl` controller.  This is a function that can be called to return an object that allows communication over a REST API.  Written as `Entry = $resource('/entries/:id', {id: '@id'}, {update: {method: 'PUT'}}). From documentation, 
-`$resource(url, [paramDefaults], [actions]);`.
+5.  Add the `$resource` service as argument to the `@ChoiceCtrl` controller.  This is a function that can be called to return an object that allows communication over a REST API.  Written as `Entry = $resource('/entries/:id', {id: '@id'}, {update: {method: 'PUT'}}). From documentation, `$resource(url, [paramDefaults], [actions]);`.
 
+6.  `Entry.query()` will trigger the `#index` action on the Rails application, using the JSON API to return an array of entries.
 
-6.  
+7.  `Entry.save($scope.newEntry)` will trigger the Rails `#create` action with the added entry as parameter.
+
+8.  `Entry.update(entry)` triggers the `#update` action, but since `entry` is already a `$resource` object, the syntax `entry.$update()` can be used instead.
 
 
 
